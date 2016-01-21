@@ -11,7 +11,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">MODIFY BOARD</h3>
+					<h3 class="box-title">게시글 수정</h3>
 				</div>
 				<!-- /.box-header -->
 
@@ -25,21 +25,21 @@
 					<div class="box-body">
 
 						<div class="form-group">
-							<label for="exampleInputEmail1">BNO</label> <input type="text"
+							<label for="exampleInputEmail1">번호</label> <input type="text"
 								name='bno' class="form-control" value="${boardVO.bno}"
 								readonly="readonly">
 						</div>
 
 						<div class="form-group">
-							<label for="exampleInputEmail1">Title</label> <input type="text"
+							<label for="exampleInputEmail1">제목</label> <input type="text"
 								name='title' class="form-control" value="${boardVO.title}">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Content</label>
+							<label for="exampleInputPassword1">내용</label>
 							<textarea class="form-control" name="content" rows="3">${boardVO.content}</textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Writer</label> <input
+							<label for="exampleInputEmail1">글쓴이</label> <input
 								type="text" name="writer" class="form-control"
 								value="${boardVO.writer}">
 						</div>
@@ -47,8 +47,8 @@
 					<!-- /.box-body -->
 				</form>
 				<div class="box-footer">
-					<button type="submit" class="btn btn-primary">SAVE</button>
-					<button type="submit" class="btn btn-warning">CANCEL</button>
+					<button type="submit" class="btn btn-primary">저장</button>
+					<button type="submit" class="btn btn-warning">취소</button>
 				</div>
 
 <script>

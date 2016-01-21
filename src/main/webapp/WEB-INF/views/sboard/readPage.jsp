@@ -11,7 +11,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">READ BOARD</h3>
+					<h3 class="box-title">게시글 읽기</h3>
 				</div>
 				<!-- /.box-header -->
 
@@ -27,17 +27,17 @@
 
 				<div class="box-body">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Title</label> <input type="text"
+						<label for="exampleInputEmail1">제목</label> <input type="text"
 							name='title' class="form-control" value="${boardVO.title}"
 							readonly="readonly">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Content</label>
+						<label for="exampleInputPassword1">내용</label>
 						<textarea class="form-control" name="content" rows="3"
 							readonly="readonly">${boardVO.content}</textarea>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Writer</label> <input type="text"
+						<label for="exampleInputEmail1">글쓴이</label> <input type="text"
 							name="writer" class="form-control" value="${boardVO.writer}"
 							readonly="readonly">
 					</div>
@@ -45,9 +45,9 @@
 				<!-- /.box-body -->
 
 			  <div class="box-footer">
-			    <button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
-			    <button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
-			    <button type="submit" class="btn btn-primary" id="goListBtn">GO LIST </button>
+			    <button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
+			    <button type="submit" class="btn btn-danger" id="removeBtn">삭제</button>
+			    <button type="submit" class="btn btn-primary" id="goListBtn">목록으로 </button>
 			  </div>
 
 
@@ -67,20 +67,17 @@
 
 			<div class="box box-success">
 				<div class="box-header">
-					<h3 class="box-title">ADD NEW REPLY</h3>
+					<h3 class="box-title">댓글 작성</h3>
 				</div>
 				<div class="box-body">
-					<label for="exampleInputEmail1">Writer</label> <input
-						class="form-control" type="text" placeholder="USER ID"
-						id="newReplyWriter"> <label for="exampleInputEmail1">Reply
-						Text</label> <input class="form-control" type="text"
-						placeholder="REPLY TEXT" id="newReplyText">
-
+					<label for="exampleInputEmail1">글쓴이</label>
+					<input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter">
+					<label for="exampleInputEmail1">댓글 내용</label>
+					<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary" id="replyAddBtn">ADD
-						REPLY</button>
+					<button type="button" class="btn btn-primary" id="replyAddBtn">댓글 달기</button>
 				</div>
 			</div>
 
@@ -90,7 +87,7 @@
 		  <!-- timeline time label -->
 		<li class="time-label" id="repliesDiv">
 		  <span class="bg-green">
-		    Replies List <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
+		    댓글 보기 <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
 		    </span>
 		  </li>
 		</ul>
