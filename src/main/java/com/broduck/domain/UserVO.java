@@ -1,5 +1,7 @@
 package com.broduck.domain;
 
+import java.util.Date;
+
 public class UserVO {
 
   private Integer uno;
@@ -7,6 +9,8 @@ public class UserVO {
   private String password;
   private String name;
   private String birth;
+  private String sessionKey;
+  private Date sessionLimit;
 
   public Integer getUno() {
     return uno;
@@ -46,6 +50,22 @@ public class UserVO {
 
   public void setBirth(String birth) {
     this.birth = birth;
+  }
+
+  public String getSessionKey() {
+    return sessionKey;
+  }
+
+  public void setSessionKey(String sessionKey) {
+    this.sessionKey = sessionKey;
+  }
+
+  public Date getSessionLimit() {
+    return sessionLimit;
+  }
+
+  public void setSessionLimit(Date sessionLimit) {
+    this.sessionLimit = sessionLimit;
   }
 
   @Override

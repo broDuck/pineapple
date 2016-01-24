@@ -28,7 +28,7 @@
 		<b>Pineapple</b>
 	</div><!-- /.login-logo -->
 	<div class="login-box-body">
-		<p class="login-box-msg">Sign in to start your session</p>
+		<p class="login-box-msg">뭔가 들어갔으면 좋겠다</p>
 
 		<form action="/user/loginPost" method="post">
 			<div class="form-group has-feedback">
@@ -53,9 +53,7 @@
 			</div>
 		</form>
 
-
-		<a href="#">비밀번호를 잊어버리셨나요?</a><br>
-		<a href="register.html" class="text-center">파인애플의 회원이 되어보세요</a>
+		<a href="/user/register" class="text-center">파인애플의 회원이 되어보세요</a>
 
 	</div><!-- /.login-box-body -->
 </div><!-- /.login-box -->

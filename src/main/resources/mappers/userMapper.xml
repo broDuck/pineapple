@@ -9,4 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from user
 		where id = #{id} and password = #{password}
 	</select>
+
+	<update id="keepLogin">
+		update user set sessionkey = #{sessionId}, sessionlimit = #{next}
+		where id = #{id}
+	</update>
+
+	<select id="checkUserWithSessionKey" resultType="UserVO">
+		SELECT * from user
+		where sessionkey = #{value} and sessionlimit > now()
+	</select>
 </mapper>

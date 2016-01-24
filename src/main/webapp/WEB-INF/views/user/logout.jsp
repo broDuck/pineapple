@@ -16,7 +16,7 @@
 </head>
 <body>
 <script type="text/javascript">
-    self.location.href = "/sboard/list";
+    self.location.href = "/user/login";
 </script>
 </body>
 </html>
