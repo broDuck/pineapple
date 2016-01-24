@@ -2,45 +2,60 @@ package com.broduck.domain;
 
 public class UserVO {
 
-  private String uid;
-  private String upw;
-  private String uname;
-  private int upoint;
+  private Integer uno;
+  private String id;
+  private String password;
+  private String name;
+  private String birth;
 
-  public String getUid() {
-    return uid;
+  public Integer getUno() {
+    return uno;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setUno(Integer uno) {
+    this.uno = uno;
   }
 
-  public String getUpw() {
-    return upw;
+  public String getId() {
+    return id;
   }
 
-  public void setUpw(String upw) {
-    this.upw = upw;
+  public void setId(String id) {
+    this.id = id;
   }
 
-  public String getUname() {
-    return uname;
+  public String getPassword() {
+    return password;
   }
 
-  public void setUname(String uname) {
-    this.uname = uname;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
-  public int getUpoint() {
-    return upoint;
+  public String getName() {
+    return name;
   }
 
-  public void setUpoint(int upoint) {
-    this.upoint = upoint;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getBirth() {
+    return birth;
+  }
+
+  public void setBirth(String birth) {
+    this.birth = birth;
   }
 
   @Override
   public String toString() {
-    return "UserVO [uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint + "]";
+    return "UserVO{" +
+            "uno=" + uno +
+            ", id='" + id + '\'' +
+            ", password='" + password + '\'' +
+            ", name='" + name + '\'' +
+            ", birth='" + birth + '\'' +
+            '}';
   }
 }
