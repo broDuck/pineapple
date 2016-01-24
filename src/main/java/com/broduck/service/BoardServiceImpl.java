@@ -27,7 +27,6 @@ public class BoardServiceImpl implements BoardService {
     AttachVO attach = new AttachVO();
     Integer bno = dao.getBno(board.getWriter());
     attach.setBno(bno);
-    System.out.println(bno);
 
     String[] files = board.getFiles();
 

@@ -1,6 +1,8 @@
 package com.broduck.controller;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +21,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * Created by broduck on 16. 1. 22.
@@ -29,6 +33,8 @@ public class UploadController {
 
     @Resource(name = "uploadPath")
     private String uploadPath;
+
+    private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
     @RequestMapping(value = "/fileUpload/post", produces = "text/plain;charset=UTF-8")
     @ResponseBody
@@ -41,7 +47,7 @@ public class UploadController {
             MultipartFile mpf = multipartRequest.getFile(itr.next());
 
             fileName = uploadFile(mpf.getOriginalFilename(), mpf.getBytes());
-            System.out.println("FILE_INFO: " + fileName);
+            logger.info("file info : " + fileName);
         }
 
         return fileName;
@@ -53,7 +59,7 @@ public class UploadController {
         InputStream in = null;
         ResponseEntity<byte[]> entity = null;
 
-        System.out.println("File name: " + fileName);
+        logger.info("File name : " + fileName);
 
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -79,7 +85,7 @@ public class UploadController {
     @ResponseBody
     @RequestMapping(value = "/deleteFile", method = RequestMethod.POST)
     public ResponseEntity<String> deleteFile(String fileName) {
-        System.out.println("delete file: " + fileName);
+        logger.info("delete file: " + fileName);
 
         new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 
@@ -90,12 +96,13 @@ public class UploadController {
     @RequestMapping(value = "/deleteAllFiles", method = RequestMethod.POST)
     public ResponseEntity<String> deleteFile(@RequestParam("files[]") String[] files) {
         if (files == null || files.length == 0) {
-            System.out.println("files is null");
+            logger.info("files is null");
             return new ResponseEntity<String>("deleted", HttpStatus.OK);
         }
 
         for (String fileName : files) {
-            System.out.println("delete file : " + fileName);
+            logger.info("delete  file : " + fileName);
+
             try {
                 new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
             } catch (Exception e) {
