@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.broduck.domain.AttachVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +20,26 @@ public class BoardServiceImpl implements BoardService {
   @Inject
   private BoardDAO dao;
 
+  @Transactional
   @Override
   public void regist(BoardVO board) throws Exception {
     dao.create(board);
+    AttachVO attach = new AttachVO();
+    Integer bno = dao.getBno(board.getWriter());
+    attach.setBno(bno);
+    System.out.println(bno);
+
+    String[] files = board.getFiles();
+
+    if (files == null) {
+      return;
+    }
+
+    for (String fileName : files) {
+      attach.setFullName(fileName);
+      dao.addAttach(attach);
+    }
   }
-
-//  @Override
-//  public BoardVO read(Integer bno) throws Exception {
-//    return dao.read(bno);
-//  }
-
 
   @Transactional(isolation=Isolation.READ_COMMITTED)
   @Override
@@ -37,14 +48,15 @@ public class BoardServiceImpl implements BoardService {
     return dao.read(bno);
   }
 
-  
   @Override
   public void modify(BoardVO board) throws Exception {
     dao.update(board);
   }
 
+  @Transactional
   @Override
   public void remove(Integer bno) throws Exception {
+    dao.deleteAttach(bno);
     dao.delete(bno);
   }
 
@@ -75,6 +87,11 @@ public class BoardServiceImpl implements BoardService {
   public int listSearchCount(SearchCriteria cri) throws Exception {
 
     return dao.listSearchCount(cri);
+  }
+
+  @Override
+  public List<String> getAttach(Integer bno) throws Exception {
+    return dao.getAttach(bno);
   }
 
 }

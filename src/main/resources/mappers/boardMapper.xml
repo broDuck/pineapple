@@ -10,6 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{title},#{content}, #{writer})
 	</insert>
 
+    <select id="getBno" resultType="Integer">
+        SELECT max(bno) from board
+        where writer = #{writer}
+    </select>
+
 	<select id="read" resultType="BoardVO">
 		select
 		bno, title, content, writer, regdate, viewcnt , replycnt
@@ -142,5 +147,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="updateViewCnt">
   update board set viewcnt = viewcnt +1 where bno = #{bno}
 </update>
- 
+
+
+<insert id="addAttach">
+	insert into attach(fullname, bno) values (#{fullName}, #{bno})
+</insert>
+
+<select id="getAttach" resultType="String">
+    SELECT fullname from attach where bno = #{bno} ORDER BY regdate
+</select>
+
+<delete id="deleteAttach">
+    DELETE FROM attach where bno = #{bno}
+</delete>
+
+<insert id="replaceAttach">
+    INSERT INTO attach VALUES (#{fullName}, #{bno})
+</insert>
+
 </mapper>

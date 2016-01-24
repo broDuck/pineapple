@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import com.broduck.domain.AttachVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -22,8 +23,9 @@ public class BoardDAOImpl implements BoardDAO {
   private static String namespace = "com.broduck.mapper.BoardMapper";
 
   @Override
-  public void create(BoardVO vo) throws Exception {
-    session.insert(namespace + ".create", vo);
+  public Integer create(BoardVO vo) throws Exception {
+
+      return session.insert(namespace + ".create", vo);
   }
 
   @Override
@@ -97,6 +99,30 @@ public class BoardDAOImpl implements BoardDAO {
   public void updateViewCnt(Integer bno) throws Exception {
     
     session.update(namespace+".updateViewCnt", bno);
-    
   }
+
+  @Override
+    public void addAttach(AttachVO vo) throws Exception {
+      session.insert(namespace + ".addAttach", vo);
+  }
+
+    @Override
+    public List<String> getAttach(Integer bno) throws Exception {
+        return session.selectList(namespace + ".getAttach", bno);
+    }
+
+    @Override
+    public Integer getBno(String writer) throws Exception {
+        return session.selectOne(namespace + ".getBno", writer);
+    }
+
+    @Override
+    public void deleteAttach(Integer bno) throws Exception {
+        session.delete(namespace + ".deleteAttach", bno);
+    }
+
+    @Override
+    public void replaceAttach(AttachVO vo) throws Exception {
+        session.insert(namespace + ".replaceAttach", vo);
+    }
 }
