@@ -33,11 +33,20 @@
 
     <beans:bean id="loginInterceptor" class="com.broduck.interceptor.LoginInterceptor"></beans:bean>
 
+	<beans:bean id="authInterceptor" class="com.broduck.interceptor.AuthInterceptor"></beans:bean>
+
     <interceptors>
         <interceptor>
             <mapping path="/user/loginPost"/>
             <beans:ref bean="loginInterceptor"/>
         </interceptor>
+
+		<interceptor>
+			<mapping path="/sboard/register"/>
+			<mapping path="/sboard/modifyPage"/>
+			<mapping path="/sboard/removePage"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
     </interceptors>
 	
 	<context:component-scan base-package="com.broduck.controller" />

@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>AdminLTE 2 | Log in</title>
+	<title>Login</title>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	<!-- Bootstrap 3.3.4 -->
 	<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -54,8 +54,8 @@
 		</form>
 
 
-		<a href="#">비밀번호를 잃어버렸어요</a><br>
-		<a href="register.html" class="text-center">회원가입</a>
+		<a href="#">비밀번호를 잊어버리셨나요?</a><br>
+		<a href="register.html" class="text-center">파인애플의 회원이 되어보세요</a>
 
 	</div><!-- /.login-box-body -->
 </div><!-- /.login-box -->

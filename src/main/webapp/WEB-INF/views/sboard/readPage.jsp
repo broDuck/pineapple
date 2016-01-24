@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@include file="../include/header.jsp" %>
 <style type="text/css">
@@ -77,14 +78,17 @@
                     </div>
 
                     <label for="exampleInputEmail1">파일 목록</label>
+
                     <div class="dragAndDropDiv"></div>
 
                 </div>
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
-                    <button type="submit" class="btn btn-danger" id="removeBtn">삭제</button>
+                    <c:if test="${login.id == boardVO.writer}">
+                        <button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
+                        <button type="submit" class="btn btn-danger" id="removeBtn">삭제</button>
+                    </c:if>
                     <button type="submit" class="btn btn-primary" id="goListBtn">목록으로</button>
                 </div>
 
@@ -105,16 +109,24 @@
                 <div class="box-header">
                     <h3 class="box-title">댓글 작성</h3>
                 </div>
-                <div class="box-body">
-                    <label for="exampleInputEmail1">글쓴이</label>
-                    <input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter">
-                    <label for="exampleInputEmail1">댓글 내용</label>
-                    <input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    <button type="button" class="btn btn-primary" id="replyAddBtn">댓글 달기</button>
-                </div>
+                <c:if test="${not empty login}">
+                    <div class="box-body">
+                        <label for="exampleInputEmail1">글쓴이</label>
+                        <input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter" value="${login.id}" readonly="readonly">
+                        <label for="exampleInputEmail1">댓글 내용</label>
+                        <input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-primary" id="replyAddBtn">댓글 달기</button>
+                    </div>
+                </c:if>
+
+                <c:if test="${empty login}">
+                    <div class="box-body">
+                        <div><a href="javascript:goLogin();">로그인이 필요한 기능입니다. 로그인 하시려면 클릭하세요.</a> </div>
+                    </div>
+                </c:if>
             </div>
 
 
@@ -174,15 +186,20 @@
     {{#each .}}
     <li class="replyLi" data-rno={{rno}}>
         <i class="fa fa-comments bg-blue"></i>
+
         <div class="timeline-item">
   <span class="time">
     <i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
   </span>
+
             <h3 class="timeline-header">{{replyer}}</h3>
+
             <div class="timeline-body">{{replytext}}</div>
             <div class="timeline-footer">
+                {{#eqReplyer replyer}}
                 <a class="btn btn-primary btn-xs"
                    data-toggle="modal" data-target="#modifyModal">수정</a>
+                {{/eqReplyer}}
             </div>
         </div>
     </li>
@@ -196,6 +213,16 @@
         var month = dateObj.getMonth() + 1;
         var date = dateObj.getDate();
         return year + "/" + month + "/" + date;
+    });
+
+    Handlebars.registerHelper("eqReplyer", function(replyer, block) {
+        var accum = '';
+
+        if (replyer == '${login.id}') {
+            accum += block.fn();
+        }
+
+        return accum;
     });
 
     var printData = function (replyArr, target, templateObject) {
@@ -369,7 +396,7 @@
             formObj.submit();
         });
 
-        $("#removeBtn").on("click", function() {
+        $("#removeBtn").on("click", function () {
             var replyCnt = $("#replycntSmall").html();
 
             if (replyCnt > 0) {
@@ -378,7 +405,7 @@
             }
 
             $.getJSON("/sboard/getAttach/" + bno, function (list) {
-                $(list).each(function() {
+                $(list).each(function () {
                     arr.push(this);
                 });
             });
@@ -387,8 +414,8 @@
                 $.ajax({
                     url: "/deleteAllFiles",
                     type: "POST",
-                    data: {files:arr},
-                    success: function() {
+                    data: {files: arr},
+                    success: function () {
 
                     }
                 });
@@ -406,8 +433,8 @@
 
     });
 
-    $.getJSON("/sboard/getAttach/" + bno, function(list) {
-        $(list).each(function() {
+    $.getJSON("/sboard/getAttach/" + bno, function (list) {
+        $(list).each(function () {
             var fileName = this;
             var originalName = fileName.split("_");
             handleFileUpload(originalName[1], fileName);
@@ -427,7 +454,7 @@
         obj.after(this.statusbar);
 
         this.setFileName = function (name, link) {
-            var fileLink ="<a href='/displayFile?fileName=" + link + "'>" + name + "</a>";
+            var fileLink = "<a href='/displayFile?fileName=" + link + "'>" + name + "</a>";
             this.filename.html(fileLink);
         }
     }

@@ -260,7 +260,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">글쓴이</label> <input type="text"
                                                                                name="writer" class="form-control"
-                                                                               placeholder="Enter Writer">
+                                                                               value="${login.id}" readonly>
                         </div>
 
                         <label for="exampleInputEmail1">파일 첨부 (최대 20MB까지 업로드 가능합니다.)</label>
