@@ -15,9 +15,8 @@
 			<!-- general form elements -->
 			<div class='box'>
 				<div class="box-header with-border">
-					<h3 class="box-title">게시글 목록</h3>
+					<h3 class="box-title">공유 게시판</h3>
 				</div>
-
 
 				<div class='box-body'>
 
@@ -54,7 +53,7 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">LIST</h3>
+					<h3 class="box-title">게시글 목록</h3>
 				</div>
 				<div class="box-body">
 					<table class="table table-bordered">

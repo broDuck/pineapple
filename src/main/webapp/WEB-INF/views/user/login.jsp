@@ -21,14 +21,25 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+	<style>
+		body {
+			background-image: url(/resources/dist/img/loginBackground.png);
+			background-size: cover;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+		}
+	</style>
 </head>
-<body class="login-page">
+<body class="login-page" style="background-image: url(/resources/dist/img/loginBackground.png); background-size: cover; ">
 <div class="login-box">
 	<div class="login-logo">
-		<b>Pineapple</b>
+		<img src="/resources/dist/img/Icon4.png" width="300px" height="300px">
+		<b style="color: white">Pineapple</b>
 	</div><!-- /.login-logo -->
 	<div class="login-box-body">
-		<p class="login-box-msg">뭔가 들어갔으면 좋겠다</p>
+		<p class="login-box-msg">달콤한 노래, 파인애플</p>
 
 		<form action="/user/loginPost" method="post">
 			<div class="form-group has-feedback">
