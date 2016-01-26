@@ -41,4 +41,9 @@ public class UserDAOImpl implements UserDAO {
     public UserVO checkUserWithSessionKey(String value) throws Exception {
         return session.selectOne(namespace + ".checkUserWithSessionKey", value);
     }
+
+    @Override
+    public int checkUser(LoginDTO dto) throws Exception {
+        return session.selectOne(namespace + ".loginCheck", dto);
+    }
 }

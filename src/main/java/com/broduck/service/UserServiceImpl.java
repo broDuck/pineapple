@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
     public UserVO checkLoginBefore(String value) throws Exception{
         return dao.checkUserWithSessionKey(value);
     }
+
+    @Override
+    public int checkUser(LoginDTO dto) throws Exception {
+        return dao.checkUser(dto);
+    }
 }

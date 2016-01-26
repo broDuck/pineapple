@@ -6,6 +6,9 @@
 <%@include file="../include/header.jsp" %>
 
 <!-- Main content -->
+<script>
+    var i = 1;
+</script>
 <section class="content">
     <div class="row">
         <!-- left column -->
@@ -55,15 +58,14 @@
                             <th style="width: 10%">재생횟수</th>
                         </tr>
 
-                        <c:forEach items="${list}" var="musicVO">
+                        <c:forEach items="${list}" var="musicVO" varStatus="status">
 
                             <tr>
-                                <td>${musicVO.mno}</td>
+                                <td>${status.count}</td>
                                 <td>${musicVO.title}</td>
                                 <td>${musicVO.artist}</td>
-                                <td><a href="javascript:;" onclick="playMusic(${musicVO.mno});"><img
-                                        src="/resources/dist/img/playvideo3-34.png"></a></td>
-                                <td><img src="/resources/dist/img/add139-34.png"></td>
+                                <td><a href="javascript:;" onclick="playMusic(${musicVO.mno})"><img src="/resources/dist/img/playvideo3-34.png"></a></td>
+                                <td><a href="javascript:;" onclick="playMusic(0)"><img src="/resources/dist/img/add139-34.png"></a></td>
                                 <td><span class="badge bg-red">${musicVO.viewcnt }</span></td>
                             </tr>
 
@@ -127,44 +129,20 @@
                     + $("select option:selected").val()
                     + "&keyword=" + $('#keywordInput').val();
         });
-
-        $('#newBtn').on("click", function (evt) {
-            self.location = "register";
-        });
     });
 
-    var clicked;
-
     function playMusic(mno) {
-        if (clicked == null) {
             var winl = (screen.width) / 6;
             var wint = (screen.height) / 6;
             if (winl < 0) winl = 0;
             if (wint < 0) wint = 0;
             var settings = 'height=700,';
-            settings += 'width=440,';
+            settings += 'width=460,';
             settings += 'top=' + wint + ',';
             settings += 'left=' + winl;
-            clicked = window.open("player", "_blank", settings);
-            clicked.window.focus();
-        }
-
-        $.ajax({
-            type: 'post',
-            url: 'player',
-            headers: {
-                "Content-Type": "application/json",
-                "X-HTTP-Method-Override": "POST"
-            },
-            dataType: 'text',
-            data: JSON.stringify({mno: mno, session: '${login.id}'}),
-            success: function (result) {
-
-            }
-        });
+            flag = window.open("player?mno=" + mno, "_blank", settings);
+            flag.window.focus();
     }
-
-
 
 </script>
 

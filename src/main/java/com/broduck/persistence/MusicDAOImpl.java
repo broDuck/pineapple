@@ -31,6 +31,11 @@ public class MusicDAOImpl implements MusicDAO {
     }
 
     @Override
+    public List<MusicVO> readAll() throws Exception {
+        return session.selectList(namespace + ".readAll");
+    }
+
+    @Override
     public List<MusicVO> listPage(SearchCriteria cri) throws Exception {
 
         return session.selectList(namespace + ".listPage", cri);
@@ -39,5 +44,10 @@ public class MusicDAOImpl implements MusicDAO {
     public int listSearchCount(SearchCriteria cri) throws Exception {
 
         return session.selectOne(namespace + ".listSearchCount", cri);
+    }
+
+    @Override
+    public void viewCnt(Integer mno) throws Exception {
+        session.update(namespace + ".update", mno);
     }
 }

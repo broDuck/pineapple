@@ -14,4 +14,6 @@ public interface UserService {
     public void keepLogin(String id, String sessionId, Date next) throws Exception;
 
     public UserVO checkLoginBefore(String value) throws Exception;
+
+    public int checkUser(LoginDTO dto) throws Exception;
 }

@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id} and password = #{password}
 	</select>
 
+	<select id="loginCheck" resultType="int">
+		SELECT count(uno)
+		FROM user
+		WHERE id = #{id} and password = #{password}
+	</select>
+
 	<update id="keepLogin">
 		update user set sessionkey = #{sessionId}, sessionlimit = #{next}
 		where id = #{id}

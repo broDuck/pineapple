@@ -14,7 +14,11 @@ public interface MusicDAO {
 
     public MusicVO read(Integer mno) throws Exception;
 
+    public List<MusicVO> readAll() throws Exception;
+
     public List<MusicVO> listPage(SearchCriteria cri) throws Exception;
 
     public int listSearchCount(SearchCriteria cri)throws Exception;
+
+    public void viewCnt(Integer mno) throws Exception;
 }

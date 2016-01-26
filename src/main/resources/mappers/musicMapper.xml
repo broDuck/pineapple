@@ -15,6 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE mno = #{mno}
 	</select>
 
+	<select id="readAll" resultType="MusicVO">
+		SELECT * from music
+		order by viewcnt desc
+	</select>
+
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -40,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search"></include>
   
 <![CDATA[    
-  order by viewcnt asc
+  order by viewcnt desc
   limit #{pageStart}, #{perPageNum}
 ]]>
 	</select>
@@ -54,4 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search"></include>
 
 	</select>
+
+	<update id="update">
+		update music set viewcnt = viewcnt + 1
+		WHERE mno = #{mno}
+	</update>
 </mapper>

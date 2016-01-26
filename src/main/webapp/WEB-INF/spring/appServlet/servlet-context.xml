@@ -32,7 +32,7 @@
 	</beans:bean>
 
 	<beans:bean id="musicPath" class="java.lang.String">
-		<beans:constructor-arg value="210.118.64.177/music">
+		<beans:constructor-arg value="C:\\pineapple\\music">
 		</beans:constructor-arg>
 	</beans:bean>
 
@@ -50,6 +50,8 @@
 			<mapping path="/sboard/register"/>
 			<mapping path="/sboard/modifyPage"/>
 			<mapping path="/sboard/removePage"/>
+			<mapping path="/music/register"/>
+			<mapping path="/music/list"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
     </interceptors>

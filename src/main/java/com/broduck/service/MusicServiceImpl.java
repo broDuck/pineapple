@@ -5,6 +5,7 @@ import com.broduck.domain.MusicVO;
 import com.broduck.domain.SearchCriteria;
 import com.broduck.persistence.MusicDAO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -24,9 +25,16 @@ public class MusicServiceImpl implements MusicService {
         dao.create(music);
     }
 
+    @Transactional
     @Override
     public MusicVO read(Integer mno) throws Exception {
+        dao.viewCnt(mno);
         return dao.read(mno);
+    }
+
+    @Override
+    public List<MusicVO> readAll() throws Exception {
+        return dao.readAll();
     }
 
     @Override
