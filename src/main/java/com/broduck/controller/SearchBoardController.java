@@ -1,8 +1,9 @@
 package com.broduck.controller;
 
-import javax.inject.Inject;
-
-import com.broduck.domain.AttachVO;
+import com.broduck.domain.BoardVO;
+import com.broduck.domain.PageMaker;
+import com.broduck.domain.SearchCriteria;
+import com.broduck.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.broduck.domain.BoardVO;
-import com.broduck.domain.PageMaker;
-import com.broduck.domain.SearchCriteria;
-import com.broduck.service.BoardService;
-
+import javax.inject.Inject;
 import java.util.List;
 
 @Controller
@@ -31,13 +28,11 @@ public class SearchBoardController {
 
     logger.info(cri.toString());
 
-    // model.addAttribute("list", service.listCriteria(cri));
     model.addAttribute("list", service.listSearchCriteria(cri));
 
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
 
-    // pageMaker.setTotalCount(service.listCountCriteria(cri));
     pageMaker.setTotalCount(service.listSearchCount(cri));
 
     model.addAttribute("pageMaker", pageMaker);

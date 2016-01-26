@@ -31,6 +31,11 @@
 		</beans:constructor-arg>
 	</beans:bean>
 
+	<beans:bean id="musicPath" class="java.lang.String">
+		<beans:constructor-arg value="210.118.64.177/music">
+		</beans:constructor-arg>
+	</beans:bean>
+
     <beans:bean id="loginInterceptor" class="com.broduck.interceptor.LoginInterceptor"></beans:bean>
 
 	<beans:bean id="authInterceptor" class="com.broduck.interceptor.AuthInterceptor"></beans:bean>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.broduck.mapper.MusicMapper">
+
+	<insert id="create">
+		insert into music(title, artist, filepath)
+		VALUES (#{title}, #{artist}, #{filepath})
+	</insert>
+
+	<select id="read" resultType="MusicVO">
+		select * from music
+		WHERE mno = #{mno}
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and artist like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR artist like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="listPage" resultType="MusicVO">
+<![CDATA[  
+  select * 
+  from music
+  where mno > 0
+]]>
+
+		<include refid="search"></include>
+  
+<![CDATA[    
+  order by viewcnt asc
+  limit #{pageStart}, #{perPageNum}
+]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+<![CDATA[  
+  select count(mno)
+  from music
+  where mno > 0
+]]>
+		<include refid="search"></include>
+
+	</select>
+</mapper>
