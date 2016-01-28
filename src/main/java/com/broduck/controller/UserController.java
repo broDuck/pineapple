@@ -35,11 +35,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/loginPost", method = RequestMethod.POST)
-    public String loginPOST(LoginDTO dto, HttpSession session, Model model) throws Exception {
+    public void loginPOST(LoginDTO dto, HttpSession session, Model model) throws Exception {
         UserVO vo = service.login(dto);
 
         if (vo == null) {
-            return "redirect:/";
+            return;
         }
 
         model.addAttribute("userVO", vo);
@@ -51,8 +51,6 @@ public class UserController {
 
             service.keepLogin(vo.getId(), session.getId(), sessionLimit);
         }
-
-        return "redirect:/music/list";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
